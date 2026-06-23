@@ -1,0 +1,14 @@
+# Python
+__pycache__/
+*.pyc
+
+# macOS / éditeurs
+.DS_Store
+*.swp
+.vscode/
+.idea/
+
+# Sorties locales de l'élève (ne pas committer)
+/tmp/
+*.log
+emails-*.txt
