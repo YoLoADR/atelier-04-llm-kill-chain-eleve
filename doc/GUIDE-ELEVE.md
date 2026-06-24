@@ -365,8 +365,11 @@ cause racine est en amont du LLM).
 
 ### Défense 1 — Filtrer les prompts en ENTRÉE
 
-Dans `apps/soluvia-chatbot-lab/guardrails.py`, la fonction `check_input()` est
-vide en mode vulnérable. On ajoute des patterns qui repèrent les tentatives
+Le chatbot tourne par défaut en mode **vulnérable** : le module
+`apps/soluvia-chatbot-lab/guardrails.py` existe et sa fonction `check_input()`
+est bien écrite, **mais il n'est pas chargé** (le code ne l'importe qu'en
+`MODE=secure`) — donc aucun filtre d'entrée ne s'applique. La défense consiste à
+**activer** ce module et à **enrichir** ses patterns, qui repèrent les tentatives
 d'injection directe :
 
 ```python
@@ -456,7 +459,7 @@ curl -s http://localhost:8080/logs | python3 -m json.tool
 curl -s http://localhost:8080/logs | python3 -c "
 import json, sys
 data = json.load(sys.stdin)
-logs = data['logs']           # /logs renvoie {\"logs\": [...]} — on prend la liste
+logs = data.get('logs', [])   # /logs renvoie {\"logs\": [...]} — liste vide si la clé manque
 suspects = [l for l in logs
             if l.get('event') == 'blocked'                       # prompt/réponse bloqué (MODE=secure)
             or 'DONNÉES' in l.get('response_preview', '')         # marqueur d'exfiltration en sortie (IOC #1)
