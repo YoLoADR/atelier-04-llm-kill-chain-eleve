@@ -40,7 +40,7 @@ case "$NN" in
   03) URL="https://portail-rh-corp.109-199-97-174.sslip.io";           TOOLS="curl python3";        NOTE="" ;;
   04) URL="https://chatbot-rh.109-199-97-174.sslip.io/health";         TOOLS="curl python3";        NOTE="" ;;
   05) URL="http://${VPS_IP}/payloads/";                                TOOLS="curl ssh";            NOTE="" ;;
-  06) URL="https://verif-soluvia.109-199-97-174.sslip.io/";            TOOLS="curl";                NOTE="" ;;
+  06) URL="https://assistant-ia.109-199-97-174.sslip.io/health";       TOOLS="curl";                NOTE="" ;;
   07) URL="https://connexion-soluvia.109-199-97-174.sslip.io/login";   TOOLS="curl";                NOTE="" ;;
   08) URL="https://collecte-soluvia.109-199-97-174.sslip.io/loot";     TOOLS="curl python3";        NOTE="" ;;
   09) URL="https://soluvia-productivity.109-199-97-174.sslip.io/";     TOOLS="curl";                NOTE="Dépend de l'activation OAuth GCP (voir formateur)." ;;
